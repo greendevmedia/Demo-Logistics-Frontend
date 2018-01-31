@@ -1,0 +1,18 @@
+.logout {
+    margin-right: 5%;
+   float: right;
+}
+
+.logout-text{
+    float: right;
+    font-size: 15px;
+    font-family: 'Source Sans Pro';
+    margin-right: 1%;
+
+}
+
+.welcome {
+    font-size: 15px;
+    font-family: 'Source Sans Pro';
+    margin-left:5%; 
+}

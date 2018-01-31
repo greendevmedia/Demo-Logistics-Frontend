@@ -1,0 +1,114 @@
+.ths {
+    height: 35px;
+}
+
+.tableStyle{
+    font-size: 11px;
+    text-align: center;
+    align-self: center;
+    font-family: 'Source Sans Pro';
+}
+
+table.center {
+    width:90%; 
+    margin-left:5%; 
+    margin-right:5%;
+}
+
+
+.inputStyle {
+      background-color: #f7f7f9;
+      border: none;
+      height: 35px;
+      font-size: 11px;
+      font-family: 'Source Sans Pro';
+      margin-left:5%; 
+      margin-right: 5px;
+    
+}
+
+.look {
+    height: 32px;
+    font-family: 'Source Sans Pro';
+    font-size: 11px;
+    width: 8%;
+    margin-right: 5px;
+    
+}
+
+.logout {
+    margin-right: 5%;
+   float: right;
+}
+
+.logout-text{
+    float: right;
+    font-size: 15px;
+    font-family: 'Source Sans Pro';
+    margin-right: 1%;
+
+}
+
+.welcome {
+    font-size: 15px;
+    font-family: 'Source Sans Pro';
+    margin-left:5%; 
+}
+
+.pagnitation {
+    float: right;
+    margin-right: 5%;
+}
+
+.page-link {
+    border: none;
+    color: black;
+    font-family: 'Source Sans Pro';
+    font-size: 9px;
+}
+.page-item.active .page-link{
+    background-color: #f7f7f9;
+    color: black;
+}
+
+.warning {
+    height: 32px;
+    font-family: 'Source Sans Pro';
+    font-size: 11px;
+    width: 20%;
+    padding-top: 8px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+.pdf{
+    color: red;
+}
+
+.boldUpper{
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 13px;
+
+}
+
+.leftBold{
+    font-weight: 900;
+    font-size: 13px;
+    text-align: left;
+
+
+}
+
+
+.left{
+    font-size: 13px;
+    text-align: left;
+
+
+}
+
+
+
+
+

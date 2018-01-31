@@ -1,0 +1,60 @@
+<br>
+<br>
+<label class="welcome">Welcome</label>
+<i class="fa fa-user-o logout" aria-hidden="true" (click)="this.loginService.logout()" style="cursor: pointer;" placement="top"
+  ngbTooltip="Click to logout"></i>
+<label class="logout-text" (click)="this.loginService.logout()" style="cursor: pointer;" placement="top" ngbTooltip="Click to logout">Logout</label>
+<br>
+<br>
+<br>
+<div class="row">
+  <input class="inputStyle col-sm-3" type="number" [(ngModel)]="this.shipmentsService.shipmentNumber" placeholder="Enter the shipment number or sales order you are looking for">
+  <button type="button" class="btn btn-info look" (click)="this.shipmentsService.getShipmentByShipmentNumberAndByCustomer(this.shipmentsService.shipmentNumber)">Search</button>
+  <button [ngbCollapse]="this.shipmentsService.wrongStatusOfShipmentById" class="warning alert alert-danger">Ther is no given Shipment Number</button>
+  <button *ngIf="this.globalService.role == 'customer-all'" type="button" class="btn btn-info look" (click)="this.shipmentsService.getShipmentsByCustomer(5, 0)">Load all</button>
+</div>
+<br>
+<br>
+<div class="row">
+  <table class="table-striped table-bordered tableStyle center">
+    <thead>
+      <tr class="table-active">
+        <th class="ths" style="width: 7%">Loading Date</th>
+        <th class="ths" style="width: 7%">Unloading Date</th>
+        <th class="ths" style="width: 7%">Doc. No.</th>
+        <th class="ths" style="width: 7%">Ship. No.</th>
+        <th class="ths" style="width: 7%">Sales Order</th>
+        <th class="ths" style="width: 7%">Weight in kg</th>
+        <th class="ths" style="width: 7%">Quantity in ltr</th>
+        <th class="ths boldUpper" style="width: 21%">Name</th>
+        <th class="ths boldUpper" style="width: 21%">Place of Delivery</th>
+        <th class="ths" style="width: 9%">Docs</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="this.shipmentsService.shipmentsList !== null">
+      <tr *ngFor="let shipment of this.shipmentsService.shipmentsList">
+        <td class="ths">{{this.dateService.dateFormatForPost(shipment.loadingDate)}}</td>
+        <td class="ths">{{this.dateService.dateFormatForPost(shipment.unloadingDate)}}</td>
+        <td class="ths">{{shipment.documentNumber}}</td>
+        <td class="ths">{{shipment.shipmentNumber}}</td>
+        <td class="ths">{{shipment.salesOrder}}</td>
+        <td class="ths" *ngIf="shipment.weightKg !== 0">{{shipment.weightKg}}</td>
+        <td class="ths" *ngIf="shipment.weightKg == 0"></td>
+        <td class="ths" *ngIf="shipment.capacityLtr !== 0">{{shipment.capacityLtr}}</td>
+        <td class="ths" *ngIf="shipment.capacityLtr == 0"></td>
+        <td class="ths leftBold">{{shipment.name}}</td>
+        <td class="ths left">{{shipment.place}}</td>
+        <td class="ths">
+          <i *ngFor="let scan of shipment.scanLinks" class="pdf fa fa-file-pdf-o fa-2x" aria-hidden="true" (click)="this.scanService.downloadFileService(scan)"
+            style="cursor: pointer;" placement="top" ngbTooltip="Click to download"></i>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="this.globalService.role == 'customer-all' && this.shipmentsService.pagnitationView">
+  <ngb-pagination class="pagnitation" [(collectionSize)]="this.shipmentsService.collectionSize" [(page)]="this.shipmentsService.page"
+    [(maxSize)]="this.shipmentsService.maxSize" [(pageSize)]="this.shipmentsService.pageSize" size="sm" [boundaryLinks]="true"
+    (pageChange)="this.shipmentsService.getShipmentsByCustomer(5, this.shipmentsService.page)"></ngb-pagination>
+</div>

@@ -1,0 +1,38 @@
+.txtfield{
+    text-align: center;
+    height: 50px;
+    margin: 2px;
+    border-radius: 0.3rem;
+    border: none;
+}
+
+.button-circle {
+    margin-top: 10px;
+    border-radius: 75px;
+    background-color: #06bebe;
+    font-size: 18px;
+    height: 65px;
+    border: none;
+  }
+
+  .btn-primary :hover{
+    background-color: white;
+  }
+
+  .ca{
+    top: 2%;
+    height: auto;
+  }
+
+  .photo {
+      margin-bottom: 5%;
+    }
+    
+    .imgsvg{
+      width: 120px;
+    }
+
+
+@media (max-width: 650px) {
+  #logo { display: none; }
+}

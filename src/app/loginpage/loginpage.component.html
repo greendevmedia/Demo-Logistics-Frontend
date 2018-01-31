@@ -1,0 +1,77 @@
+<ngb-carousel>
+  <ng-template ngbSlide>
+    <img style="width: 100%; height: auto" src="../../assets/images/port.jpg">
+    <div class="carousel-caption ca">
+      <div id="logo" class="photo col-sm-3">
+      </div>
+      <div [ngbCollapse]="this.loginService.warning">
+        <label class="alert alert-danger col-sm-3">Please correct login or password</label>
+      </div>
+      <div class="text-center">Aplikacja demo jako załącznik do CV - więcej informacji na dole strony</div>
+      <div>
+        <input class="txtfield col-sm-3" type="text" [(ngModel)]="this.loginService.userName" placeholder="Login">
+      </div>
+      <div>
+        <input class="txtfield col-sm-3" type="password" [(ngModel)]="this.loginService.password" placeholder="Password" secure="true">
+      </div>
+      <div>
+        <button type="button" class="btn btn-info button-circle col-sm-3" (click)="this.loginService.loginProcedure()">Log in</button>
+      </div>
+    </div>
+  </ng-template>
+</ngb-carousel>
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Informacje ogólne</h2>
+      Załącznik do CV - wersja demonstracyjna aplikacji www.
+      <br>
+      <br> Powstała w celu ułatwienia rekruterowi zorientowania się w moich umiejętnościach programistycznych.
+      <br> Zastosowane technologie: Java 8, Spring Boot 1.5.4, Keycloak 3.1.0, Hibernate 5.1.0, Angular 5, TypeScript 2.4.2,
+      PostgreSQL 9.4
+      <br>
+      <br>
+      Repozytorium: <a href="https://github.com/greendevmedia">Link</a>
+    </div>
+
+
+    <div class="col">
+      <h2>Opis aplikacji</h2>
+      Aplikacja do zarządzania przesyłkami.
+      <br>
+      <br> Uytkownicy:
+      <br>
+      <br>
+      <b>Login: "admin", hasło: "cvadmin"</b> - możliwość dodania przesyłki, edycji przesyłki, usunięcia przesyłki, przeglądania
+      wszystkich przesyłek, wyszukiwania przesyłek po numerze oraz po nazwie
+      <br>
+      <br>
+      <b>Login: "driver", hasło: "cvdriver"</b> - możliwość edycji części informacji w przesyłce, wyszukiwania przesyłki po
+      numerze
+      <br>
+      <br>
+      <b>Login: "oneclient", hasło: "cvoneclient" </b>- moliwość wyszukania swojej przesyłki po numerze i pobrania dokumentu
+      <br>
+      <br>
+      <b>Login: "allclient", hasło: "cvallclient" </b>- moliwość przeglądania wszystkich swoich przesyłek, wyszukania swojej
+      przesyłki po numerze i pobrania dokumentu
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <div class="row">
+    <div class="col">
+      <!-- <img style="width: 100%; height: auto" src="../../assets/images/fota_3.jpg"> -->
+    </div>
+    <div class="col">
+      <!-- <img style="width: 100%; height: auto" src="../../assets/images/fota_4.jpg"> -->
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+  </div>
+</div>

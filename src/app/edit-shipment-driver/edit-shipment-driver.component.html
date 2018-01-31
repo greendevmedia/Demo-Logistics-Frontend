@@ -1,0 +1,103 @@
+<br>
+<br>
+<label class="welcome">Welcome</label>
+<button (click)="goBack()" class="btn btn-outline-primary">Go back to main manu</button>
+<i class="fa fa-user-o logout" aria-hidden="true" (click)="this.loginService.logout()" style="cursor: pointer;" placement="top"
+  ngbTooltip="Click to logout"></i>
+<label class="logout-text" (click)="this.loginService.logout()" style="cursor: pointer;" placement="top" ngbTooltip="Click to logout">Logout</label>
+<br>
+<br>
+<br>
+<form class="container" [formGroup]="editShipmentForm" [ngbCollapse]="statusOfEditing">
+  <div class="row">
+    <div class="col-md-2">
+      <label for="documentNumber">Document No.:</label>
+      <input type="number" placeholder="Document No." formControlName="documentNumber" id="documentNumber" class="form-control">
+    </div>
+    <div class="col-md-2">
+      <label for="shipmentNumber">Shipment No.:</label>
+      <input type="number" placeholder="Shipment No." formControlName="shipmentNumber" id="shipmentNumber" class="form-control">
+      <div class="alert alert-danger" *ngIf="!editShipmentForm.controls['shipmentNumber'].valid">
+        Must be filled</div>
+    </div>
+    <div class="col-md-2">
+      <label for="salesOrder">Sales order :</label>
+      <input type="number" placeholder="Sales order" formControlName="salesOrder" id="salesOrder" class="form-control">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label for="uploader">Add document:</label>
+      <input type="file" ng2FileSelect [uploader]="uploader" />
+    </div>
+    <div class="col-md-6">
+      <label>Documents queue</label>
+      <p>Queue length: {{ uploader?.queue?.length }}</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th width="50%">Name</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of uploader.queue">
+            <td>
+              <strong>{{ item?.file?.name }}</strong>
+            </td>
+            <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+            <td *ngIf="uploader.isHTML5">
+              <div class="progress" style="margin-bottom: 0;">
+                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+              </div>
+            </td>
+            <td class="text-center">
+              <span *ngIf="item.isSuccess == false">Not addded</span>
+              <span *ngIf="item.isSuccess">Added
+                <i class="glyphicon glyphicon-ok"></i>
+              </span>
+              <span *ngIf="item.isCancel">Cancel
+                <i class="glyphicon glyphicon-ban-circle"></i>
+              </span>
+              <span *ngIf="item.isError">Error
+                <i class="glyphicon glyphicon-remove"></i>
+              </span>
+            </td>
+            <td nowrap>
+              <button type="button" class="btn btn-success btn-xs" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                <span class="glyphicon glyphicon-upload"></span> Upload
+              </button>
+
+              <button *ngIf="item.isSuccess == false" type="button" class="btn btn-danger btn-xs" (click)="item.remove()">
+                <span class="glyphicon glyphicon-trash"></span> Remove
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-3">
+      <label for="customers">Added documents:</label>
+      <ol>
+        <li *ngFor="let scanLink of links">
+          <i class="pdf fa fa-file-pdf-o fa-2x" aria-hidden="true" (click)="this.scanService.downloadFileService(scanLink)" style="cursor: pointer;"
+            placement="top" ngbTooltip="Click to download"></i>
+        </li>
+      </ol>
+    </div>
+  </div>
+</form>
+<div class="container">
+  <div class="row" [ngbCollapse]="statusOfEditing">
+    <div class="col-md-2">
+      <br>
+      <input type="submit" (click)="editShipment()" [disabled]="!editShipmentForm.valid" value="Edit Shipment" class="btn btn-outline-primary">
+      <label *ngIf="information!=null" class="alert alert-danger" role="alert">{{information}}</label>
+      <br>
+    </div>
+  </div>
+  <div [ngbCollapse]="!statusOfEditing">
+    <button (click)="goBack()" [disabled]="!editShipmentForm.valid" class="btn btn-outline-primary">Go back to main manu</button>
+    <label class="alert alert-success" role="alert">{{information}}</label>
+  </div>
